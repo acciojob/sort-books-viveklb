@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack");
 const HtmlWebpackPlugin= require('html-webpack-plugin');
 module.exports = {
     entry: './src/index.js',
@@ -32,6 +33,9 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: "./src/index.html"
+        }),
+        new webpack.DefinePlugin({
+            "process.env.NYT_API_KEY": JSON.stringify(process.env.NYT_API_KEY || "")
         })
     ],
     resolve: {
